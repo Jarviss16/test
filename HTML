@@ -4,177 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dizionario Sanitario</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f0f7ff;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
-            color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .search-container {
-            display: flex;
-            margin: 20px 0;
-            justify-content: center;
-        }
-        
-        #searchInput {
-            width: 70%;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 25px 0 0 25px;
-            font-size: 16px;
-            outline: none;
-        }
-        
-        #searchInput:focus {
-            border-color: #42a5f5;
-        }
-        
-        #searchButton {
-            padding: 15px 25px;
-            background: #1976d2;
-            color: white;
-            border: none;
-            border-radius: 0 25px 25px 0;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-        
-        #searchButton:hover {
-            background: #1565c0;
-        }
-        
-        .results-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .term-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .term-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .term-name {
-            color: #1976d2;
-            margin-bottom: 10px;
-            font-size: 1.4rem;
-            border-bottom: 2px solid #e3f2fd;
-            padding-bottom: 8px;
-        }
-        
-        .term-detail {
-            margin-bottom: 8px;
-        }
-        
-        .detail-label {
-            font-weight: bold;
-            color: #555;
-        }
-        
-        .no-results {
-            text-align: center;
-            padding: 30px;
-            font-size: 18px;
-            color: #777;
-            grid-column: 1 / -1;
-        }
-        
-        .category-filters {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-        }
-        
-        .category-btn {
-            padding: 8px 16px;
-            background: #e3f2fd;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .category-btn:hover, .category-btn.active {
-            background: #bbdefb;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #777;
-        }
-        
-        @media (max-width: 768px) {
-            .results-container {
-                grid-template-columns: 1fr;
-            }
-            
-            #searchInput {
-                width: 60%;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Dizionario Sanitario</h1>
-            <p>Trova informazioni su termini medici e relative coperture</p>
+            <h1><i class="fas fa-book-medical"></i> Dizionario Sanitario</h1>
+            <p class="header-description">Trova informazioni su termini medici e relative coperture</p>
         </header>
         
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Cerca un termine sanitario...">
-            <button id="searchButton">Cerca</button>
-        </div>
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cerca un termine sanitario...">
+                <button id="searchButton">Cerca</button>
+            </div>
+            
+            <div class="category-filters">
+                <button class="category-btn active" data-category="all">Tutti</button>
+                <button class="category-btn" data-category="visite">Visite</button>
+                <button class="category-btn" data-category="esami">Esami</button>
+                <button class="category-btn" data-category="interventi">Interventi</button>
+                <button class="category-btn" data-category="farmaci">Farmaci</button>
+                <button class="category-btn" data-category="altre">Altre Prestazioni</button>
+            </div>
+        </section>
         
-        <div class="category-filters">
-            <button class="category-btn active" data-category="all">Tutti</button>
-            <button class="category-btn" data-category="visite">Visite</button>
-            <button class="category-btn" data-category="esami">Esami</button>
-            <button class="category-btn" data-category="interventi">Interventi</button>
-            <button class="category-btn" data-category="farmaci">Farmaci</button>
+        <div class="stats">
+            <span id="termsCount">0 termini trovati</span>
+            <span id="selectedCategory">Categoria: Tutti</span>
         </div>
         
         <div class="results-container" id="resultsContainer">
@@ -186,188 +43,7 @@
         </footer>
     </div>
 
-    <script>
-        // Dizionario dei termini sanitari con informazioni di rimborso
-        const dizionarioSanitario = [
-            {
-                termine: "Visita cardiologica",
-                categoria: "visite",
-                descrizione: "Visita specialistica con un cardiologo per valutare la salute del cuore.",
-                copertura: "NHS",
-                rimborso: "70%",
-                note: "Richiesta impegnativa del medico di base"
-            },
-            {
-                termine: "Risonanza magnetica",
-                categoria: "esami",
-                descrizione: "Esame di imaging che utilizza campi magnetici per visualizzare strutture interne del corpo.",
-                copertura: "Parziale",
-                rimborso: "60%",
-                note: "Solo per casi specifici con autorizzazione"
-            },
-            {
-                termine: "Ecografia addominale",
-                categoria: "esami",
-                descrizione: "Esame ecografico per visualizzare gli organi interni dell'addome.",
-                copertura: "Completa",
-                rimborso: "100%",
-                note: ""
-            },
-            {
-                termine: "Appendicectomia",
-                categoria: "interventi",
-                descrizione: "Intervento chirurgico per rimuovere l'appendice infiammata.",
-                copertura: "Completa",
-                rimborso: "100%",
-                note: "Solo in regime di urgenza"
-            },
-            {
-                termine: "Insulina",
-                categoria: "farmaci",
-                descrizione: "Farmaco per il trattamento del diabete.",
-                copertura: "Completa",
-                rimborso: "100%",
-                note: "Per pazienti diabetici con ricetta medica"
-            },
-            {
-                termine: "Visita oculistica",
-                categoria: "visite",
-                descrizione: "Visita specialistica per valutare la salute degli occhi e la vista.",
-                copertura: "Parziale",
-                rimborso: "50%",
-                note: "Rimborso annuale limitato"
-            },
-            {
-                termine: "Analisi del sangue",
-                categoria: "esami",
-                descrizione: "Esame di laboratorio per analizzare i componenti del sangue.",
-                copertura: "Completa",
-                rimborso: "100%",
-                note: "Massimo 2 serie all'anno a carico SSN"
-            },
-            {
-                termine: "Artroscopia ginocchio",
-                categoria: "interventi",
-                descrizione: "Intervento mini-invasivo per diagnosticare e trattare problemi articolari.",
-                copertura: "Parziale",
-                rimborso: "80%",
-                note: "Richiesta autorizzazione ASL"
-            },
-            {
-                termine: "Antibiotici",
-                categoria: "farmaci",
-                descrizione: "Farmaci per il trattamento di infezioni batteriche.",
-                copertura: "Variabile",
-                rimborso: "50-100%",
-                note: "A seconda della tipologia e della patologia"
-            },
-            {
-                termine: "Visita dermatologica",
-                categoria: "visite",
-                descrizione: "Visita specialistica per problemi della pelle, capelli e unghie.",
-                copertura: "Parziale",
-                rimborso: "60%",
-                note: "Ticket regionale variabile"
-            },
-            {
-                termine: "TAC",
-                categoria: "esami",
-                descrizione: "Tomografia Assiale Computerizzata, esame radiologico dettagliato.",
-                copertura: "Parziale",
-                rimborso: "70%",
-                note: "Solo con prescrizione medica"
-            },
-            {
-                termine: "Chemioterapia",
-                categoria: "farmaci",
-                descrizione: "Trattamento farmacologico per malattie tumorali.",
-                copertura: "Completa",
-                rimborso: "100%",
-                note: "Per pazienti oncologici"
-            }
-        ];
-
-        // Elementi DOM
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const resultsContainer = document.getElementById('resultsContainer');
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        
-        // Variabili per filtri
-        let currentSearchTerm = '';
-        let currentCategory = 'all';
-        
-        // Inizializza la visualizzazione
-        displayTerms(dizionarioSanitario);
-        
-        // Event listeners
-        searchInput.addEventListener('input', function() {
-            currentSearchTerm = this.value.toLowerCase();
-            filterTerms();
-        });
-        
-        searchButton.addEventListener('click', () => {
-            currentSearchTerm = searchInput.value.toLowerCase();
-            filterTerms();
-        });
-        
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Rimuovi la classe active da tutti i pulsanti
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                // Aggiungi la classe active al pulsante cliccato
-                this.classList.add('active');
-                
-                currentCategory = this.getAttribute('data-category');
-                filterTerms();
-            });
-        });
-        
-        // Funzione per filtrare i termini in base alla ricerca e alla categoria
-        function filterTerms() {
-            let filteredTerms = dizionarioSanitario;
-            
-            // Filtra per categoria
-            if (currentCategory !== 'all') {
-                filteredTerms = filteredTerms.filter(term => term.categoria === currentCategory);
-            }
-            
-            // Filtra per termine di ricerca
-            if (currentSearchTerm) {
-                filteredTerms = filteredTerms.filter(term => 
-                    term.termine.toLowerCase().includes(currentSearchTerm) ||
-                    term.descrizione.toLowerCase().includes(currentSearchTerm)
-                );
-            }
-            
-            displayTerms(filteredTerms);
-        }
-        
-        // Funzione per visualizzare i termini
-        function displayTerms(terms) {
-            resultsContainer.innerHTML = '';
-            
-            if (terms.length === 0) {
-                resultsContainer.innerHTML = '<div class="no-results">Nessun risultato trovato. Prova con un\'altra ricerca.</div>';
-                return;
-            }
-            
-            terms.forEach(term => {
-                const termCard = document.createElement('div');
-                termCard.classList.add('term-card');
-                
-                termCard.innerHTML = `
-                    <h3 class="term-name">${term.termine}</h3>
-                    <p class="term-detail"><span class="detail-label">Descrizione:</span> ${term.descrizione}</p>
-                    <p class="term-detail"><span class="detail-label">Categoria:</span> ${term.categoria}</p>
-                    <p class="term-detail"><span class="detail-label">Copertura:</span> ${term.copertura}</p>
-                    <p class="term-detail"><span class="detail-label">Rimborso:</span> ${term.rimborso}</p>
-                    ${term.note ? `<p class="term-detail"><span class="detail-label">Note:</span> ${term.note}</p>` : ''}
-                `;
-                
-                resultsContainer.appendChild(termCard);
-            });
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
