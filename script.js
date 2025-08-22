@@ -1,19 +1,19 @@
 // Dizionario dei termini sanitari con tutte le voci richieste
 const dizionarioSanitario = [
     {
-        cod: "VSC001",
-        tipologia: "Visita Specialistica",
-        termine: "Visita cardiologica",
-        categoria: "visite",
-        rimborso: "70%",
-        maxSpec: "1 ogni 6 mesi",
-        maxGrup: "N/A",
-        preventivoPrescrizione: "Richiesta",
+        cod: "5PORT",
+        tipologia: "Termine Sanitario",
+        termine: "Bastoni Canadesi",
+        categoria: "Presidi Ortopedici acquisto",
+        rimborso: "20%",
+        maxSpec: "300eur 3 anni ad avente diritto",
+        maxGrup: "Vedi maxspec",
+        preventivoPrescrizione: "Si",
         opt: "No",
-        visitaIniziale: "Si",
-        visitaFinale: "No",
+        visitaIniziale: "No",
+        visitaFinale: " ",
         valutazioneSanitaria: "ECG incluso",
-        sinonimi: "Controllo cardiologico, Visita cuore",
+        sinonimi: "Bastoni da deambulazione",
         descrizione: "Visita specialistica con un cardiologo per valutare la salute del cuore."
     },
     {
