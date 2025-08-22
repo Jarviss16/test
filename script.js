@@ -1,124 +1,164 @@
-// Dizionario dei termini sanitari con informazioni di rimborso
+// Dizionario dei termini sanitari con tutte le voci richieste
 const dizionarioSanitario = [
     {
+        cod: "VSC001",
+        tipologia: "Visita Specialistica",
         termine: "Visita cardiologica",
         categoria: "visite",
-        descrizione: "Visita specialistica con un cardiologo per valutare la salute del cuore.",
-        copertura: "NHS",
         rimborso: "70%",
-        note: "Richiesta impegnativa del medico di base"
+        maxSpec: "1 ogni 6 mesi",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Richiesta",
+        opt: "No",
+        visitaIniziale: "Si",
+        visitaFinale: "No",
+        valutazioneSanitaria: "ECG incluso",
+        sinonimi: "Controllo cardiologico, Visita cuore",
+        descrizione: "Visita specialistica con un cardiologo per valutare la salute del cuore."
     },
     {
+        cod: "ESM002",
+        tipologia: "Esame Strumentale",
         termine: "Risonanza magnetica",
         categoria: "esami",
-        descrizione: "Esame di imaging che utilizza campi magnetici per visualizzare strutture interne del corpo.",
-        copertura: "Parziale",
         rimborso: "60%",
-        note: "Solo per casi specifici con autorizzazione"
+        maxSpec: "1 all'anno",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Obbligatoria",
+        opt: "Si",
+        visitaIniziale: "No",
+        visitaFinale: "Si",
+        valutazioneSanitaria: "Referto radiologico",
+        sinonimi: "RMN, Imaging risonanza magnetica",
+        descrizione: "Esame di imaging che utilizza campi magnetici per visualizzare strutture interne del corpo."
     },
     {
+        cod: "ESC003",
+        tipologia: "Esame Strumentale",
         termine: "Ecografia addominale",
         categoria: "esami",
-        descrizione: "Esame ecografico per visualizzare gli organi interni dell'addome.",
-        copertura: "Completa",
         rimborso: "100%",
-        note: ""
+        maxSpec: "2 all'anno",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Richiesta",
+        opt: "No",
+        visitaIniziale: "No",
+        visitaFinale: "No",
+        valutazioneSanitaria: "Referto ecografico",
+        sinonimi: "Eco addome, Ultrasuoni addominali",
+        descrizione: "Esame ecografico per visualizzare gli organi interni dell'addome."
     },
     {
+        cod: "CHI004",
+        tipologia: "Intervento Chirurgico",
         termine: "Appendicectomia",
         categoria: "interventi",
-        descrizione: "Intervento chirurgico per rimuovere l'appendice infiammata.",
-        copertura: "Completa",
         rimborso: "100%",
-        note: "Solo in regime di urgenza"
+        maxSpec: "N/A",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Urgenza",
+        opt: "No",
+        visitaIniziale: "Si",
+        visitaFinale: "Si",
+        valutazioneSanitaria: "Valutazione pre-operatoria",
+        sinonimi: "Rimozione appendice, Operazione appendicite",
+        descrizione: "Intervento chirurgico per rimuovere l'appendice infiammata."
     },
     {
+        cod: "FAR005",
+        tipologia: "Farmaco",
         termine: "Insulina",
         categoria: "farmaci",
-        descrizione: "Farmaco per il trattamento del diabete.",
-        copertura: "Completa",
         rimborso: "100%",
-        note: "Per pazienti diabetici con ricetta medica"
+        maxSpec: "N/A",
+        maxGrup: "4 confezioni/mese",
+        preventivoPrescrizione: "Ricetta medica",
+        opt: "No",
+        visitaIniziale: "Si",
+        visitaFinale: "No",
+        valutazioneSanitaria: "Monitoraggio glicemico",
+        sinonimi: "Ormone ipoglicemizzante, Terapia insulinica",
+        descrizione: "Farmaco para il trattamento del diabete."
     },
     {
+        cod: "VSO006",
+        tipologia: "Visita Specialistica",
         termine: "Visita oculistica",
         categoria: "visite",
-        descrizione: "Visita specialistica per valutare la salute degli occhi e la vista.",
-        copertura: "Parziale",
         rimborso: "50%",
-        note: "Rimborso annuale limitato"
+        maxSpec: "1 all'anno",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Richiesta",
+        opt: "No",
+        visitaIniziale: "Si",
+        visitaFinale: "No",
+        valutazioneSanitaria: "Esame della vista",
+        sinonimi: "Controllo occhi, Visita oftalmologica",
+        descrizione: "Visita specialistica per valutare la salute degli occhi e la vista."
     },
     {
+        cod: "ESL007",
+        tipologia: "Esame Laboratorio",
         termine: "Analisi del sangue",
         categoria: "esami",
-        descrizione: "Esame di laboratorio per analizzare i componenti del sangue.",
-        copertura: "Completa",
         rimborso: "100%",
-        note: "Massimo 2 serie all'anno a carico SSN"
+        maxSpec: "2 serie all'anno",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Richiesta",
+        opt: "No",
+        visitaIniziale: "No",
+        visitaFinale: "No",
+        valutazioneSanitaria: "Referto ematologico",
+        sinonimi: "Esame ematico, Prelievo sanguigno",
+        descrizione: "Esame di laboratorio per analizzare i componenti del sangue."
     },
     {
-        termine: "Artroscopia ginocchio",
-        categoria: "interventi",
-        descrizione: "Intervento mini-invasivo per diagnosticare e trattare problemi articolari.",
-        copertura: "Parziale",
-        rimborso: "80%",
-        note: "Richiesta autorizzazione ASL"
-    },
-    {
+        cod: "FAR008",
+        tipologia: "Farmaco",
         termine: "Antibiotici",
         categoria: "farmaci",
-        descrizione: "Farmaci per il trattamento di infezioni batteriche.",
-        copertura: "Variabile",
-        rimborso: "50-100%",
-        note: "A seconda della tipologia e della patologia"
+        rimborso: "Variabile",
+        maxSpec: "N/A",
+        maxGrup: "Secondo prescrizione",
+        preventivoPrescrizione: "Ricetta medica",
+        opt: "No",
+        visitaIniziale: "Si",
+        visitaFinale: "No",
+        valutazioneSanitaria: "Test di sensibilità",
+        sinonimi: "Antibatterici, Farmaci antinfettivi",
+        descrizione: "Farmaci per il trattamento di infezioni batteriche."
     },
     {
+        cod: "VSD009",
+        tipologia: "Visita Specialistica",
         termine: "Visita dermatologica",
         categoria: "visite",
-        descrizione: "Visita specialistica per problemi della pelle, capelli e unghie.",
-        copertura: "Parziale",
         rimborso: "60%",
-        note: "Ticket regionale variabile"
+        maxSpec: "1 all'anno",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Richiesta",
+        opt: "No",
+        visitaIniziale: "Si",
+        visitaFinale: "No",
+        valutazioneSanitaria: "Mappatura nei",
+        sinonimi: "Controllo pelle, Visita cute",
+        descrizione: "Visita specialistica per problemi della pelle, capelli e unghie."
     },
     {
+        cod: "EST010",
+        tipologia: "Esame Strumentale",
         termine: "TAC",
         categoria: "esami",
-        descrizione: "Tomografia Assiale Computerizzata, esame radiologico dettagliato.",
-        copertura: "Parziale",
         rimborso: "70%",
-        note: "Solo con prescrizione medica"
-    },
-    {
-        termine: "Chemioterapia",
-        categoria: "farmaci",
-        descrizione: "Trattamento farmacologico per malattie tumorali.",
-        copertura: "Completa",
-        rimborso: "100%",
-        note: "Per pazienti oncologici"
-    },
-    {
-        termine: "Visita ginecologica",
-        categoria: "visite",
-        descrizione: "Visita specialistica per la salute dell'apparato riproduttivo femminile.",
-        copertura: "Completa",
-        rimborso: "100%",
-        note: "Annualmente per le donne over 25"
-    },
-    {
-        termine: "Mammografia",
-        categoria: "esami",
-        descrizione: "Esame radiologico per lo screening del tumore al seno.",
-        copertura: "Completa",
-        rimborso: "100%",
-        note: "Annualmente per le donne over 45"
-    },
-    {
-        termine: "Intervento di cataratta",
-        categoria: "interventi",
-        descrizione: "Intervento chirurgico per rimuovere la cataratta dall'occhio.",
-        copertura: "Completa",
-        rimborso: "100%",
-        note: "Per pazienti over 65 con diagnosi confermata"
+        maxSpec: "1 all'anno",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Obbligatoria",
+        opt: "Si",
+        visitaIniziale: "No",
+        visitaFinale: "Si",
+        valutazioneSanitaria: "Referto radiologico",
+        sinonimi: "Tomografia computerizzata, SCAN",
+        descrizione: "Tomografia Assiale Computerizzata, esame radiologico dettagliato."
     }
 ];
 
@@ -176,7 +216,8 @@ function filterTerms() {
         filteredTerms = filteredTerms.filter(term => 
             term.termine.toLowerCase().includes(currentSearchTerm) ||
             term.descrizione.toLowerCase().includes(currentSearchTerm) ||
-            term.note.toLowerCase().includes(currentSearchTerm)
+            term.sinonimi.toLowerCase().includes(currentSearchTerm) ||
+            term.cod.toLowerCase().includes(currentSearchTerm)
         );
     }
     
@@ -199,18 +240,26 @@ function displayTerms(terms) {
         
         // Evidenziazione del testo cercato
         const highlightText = (text, search) => {
-            if (!search) return text;
+            if (!search || !text) return text || '';
             const regex = new RegExp(`(${search})`, 'gi');
-            return text.replace(regex, '<span class="highlight">$1</span>');
+            return text.toString().replace(regex, '<span class="highlight">$1</span>');
         };
         
         termCard.innerHTML = `
             <h3 class="term-name">${highlightText(term.termine, currentSearchTerm)}</h3>
-            <p class="term-detail"><span class="detail-label">Descrizione:</span> ${highlightText(term.descrizione, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">COD:</span> ${highlightText(term.cod, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Tipologia:</span> ${highlightText(term.tipologia, currentSearchTerm)}</p>
             <p class="term-detail"><span class="detail-label">Categoria:</span> ${getCategoryLabel(term.categoria)}</p>
-            <p class="term-detail"><span class="detail-label">Copertura:</span> ${term.copertura}</p>
-            <p class="term-detail"><span class="detail-label">Rimborso:</span> ${term.rimborso}</p>
-            ${term.note ? `<p class="term-detail"><span class="detail-label">Note:</span> ${highlightText(term.note, currentSearchTerm)}</p>` : ''}
+            <p class="term-detail"><span class="detail-label">Rimborso:</span> ${highlightText(term.rimborso, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Max Spec:</span> ${highlightText(term.maxSpec, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Max Grup:</span> ${highlightText(term.maxGrup, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Preventivo-Prescrizione:</span> ${highlightText(term.preventivoPrescrizione, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">OPT:</span> ${highlightText(term.opt, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Visita Iniziale:</span> ${highlightText(term.visitaIniziale, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Visita Finale:</span> ${highlightText(term.visitaFinale, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Valutazione Sanitaria:</span> ${highlightText(term.valutazioneSanitaria, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Sinonimi:</span> ${highlightText(term.sinonimi, currentSearchTerm)}</p>
+            <p class="term-detail"><span class="detail-label">Descrizione:</span> ${highlightText(term.descrizione, currentSearchTerm)}</p>
         `;
         
         resultsContainer.appendChild(termCard);
