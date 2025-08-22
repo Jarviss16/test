@@ -1,20 +1,19 @@
-// Dizionario dei termini sanitari con tutte le voci richieste
+// Dizionario dei termini sanitari con tutte le voci richieste (senza descrizione)
 const dizionarioSanitario = [
     {
-        cod: "5PORT",
-        tipologia: "Termine Sanitario",
-        termine: "Bastoni Canadesi",
-        categoria: "Presidi Ortopedici acquisto",
-        rimborso: "20%",
-        maxSpec: "300eur 3 anni ad avente diritto",
-        maxGrup: "Vedi maxspec",
-        preventivoPrescrizione: "Si",
+        cod: "VSC001",
+        tipologia: "Visita Specialistica",
+        termine: "Visita cardiologica",
+        categoria: "visite",
+        rimborso: "70%",
+        maxSpec: "1 ogni 6 mesi",
+        maxGrup: "N/A",
+        preventivoPrescrizione: "Richiesta",
         opt: "No",
-        visitaIniziale: "No",
-        visitaFinale: " ",
+        visitaIniziale: "Si",
+        visitaFinale: "No",
         valutazioneSanitaria: "ECG incluso",
-        sinonimi: "Bastoni da deambulazione",
-        descrizione: "Visita specialistica con un cardiologo per valutare la salute del cuore."
+        sinonimi: "Controllo cardiologico, Visita cuore"
     },
     {
         cod: "ESM002",
@@ -29,8 +28,7 @@ const dizionarioSanitario = [
         visitaIniziale: "No",
         visitaFinale: "Si",
         valutazioneSanitaria: "Referto radiologico",
-        sinonimi: "RMN, Imaging risonanza magnetica",
-        descrizione: "Esame di imaging che utilizza campi magnetici per visualizzare strutture interne del corpo."
+        sinonimi: "RMN, Imaging risonanza magnetica"
     },
     {
         cod: "ESC003",
@@ -45,8 +43,7 @@ const dizionarioSanitario = [
         visitaIniziale: "No",
         visitaFinale: "No",
         valutazioneSanitaria: "Referto ecografico",
-        sinonimi: "Eco addome, Ultrasuoni addominali",
-        descrizione: "Esame ecografico per visualizzare gli organi interni dell'addome."
+        sinonimi: "Eco addome, Ultrasuoni addominali"
     },
     {
         cod: "CHI004",
@@ -61,8 +58,7 @@ const dizionarioSanitario = [
         visitaIniziale: "Si",
         visitaFinale: "Si",
         valutazioneSanitaria: "Valutazione pre-operatoria",
-        sinonimi: "Rimozione appendice, Operazione appendicite",
-        descrizione: "Intervento chirurgico per rimuovere l'appendice infiammata."
+        sinonimi: "Rimozione appendice, Operazione appendicite"
     },
     {
         cod: "FAR005",
@@ -77,8 +73,7 @@ const dizionarioSanitario = [
         visitaIniziale: "Si",
         visitaFinale: "No",
         valutazioneSanitaria: "Monitoraggio glicemico",
-        sinonimi: "Ormone ipoglicemizzante, Terapia insulinica",
-        descrizione: "Farmaco para il trattamento del diabete."
+        sinonimi: "Ormone ipoglicemizzante, Terapia insulinica"
     },
     {
         cod: "VSO006",
@@ -93,8 +88,7 @@ const dizionarioSanitario = [
         visitaIniziale: "Si",
         visitaFinale: "No",
         valutazioneSanitaria: "Esame della vista",
-        sinonimi: "Controllo occhi, Visita oftalmologica",
-        descrizione: "Visita specialistica per valutare la salute degli occhi e la vista."
+        sinonimi: "Controllo occhi, Visita oftalmologica"
     },
     {
         cod: "ESL007",
@@ -109,8 +103,7 @@ const dizionarioSanitario = [
         visitaIniziale: "No",
         visitaFinale: "No",
         valutazioneSanitaria: "Referto ematologico",
-        sinonimi: "Esame ematico, Prelievo sanguigno",
-        descrizione: "Esame di laboratorio per analizzare i componenti del sangue."
+        sinonimi: "Esame ematico, Prelievo sanguigno"
     },
     {
         cod: "FAR008",
@@ -125,8 +118,7 @@ const dizionarioSanitario = [
         visitaIniziale: "Si",
         visitaFinale: "No",
         valutazioneSanitaria: "Test di sensibilità",
-        sinonimi: "Antibatterici, Farmaci antinfettivi",
-        descrizione: "Farmaci per il trattamento di infezioni batteriche."
+        sinonimi: "Antibatterici, Farmaci antinfettivi"
     },
     {
         cod: "VSD009",
@@ -141,8 +133,7 @@ const dizionarioSanitario = [
         visitaIniziale: "Si",
         visitaFinale: "No",
         valutazioneSanitaria: "Mappatura nei",
-        sinonimi: "Controllo pelle, Visita cute",
-        descrizione: "Visita specialistica per problemi della pelle, capelli e unghie."
+        sinonimi: "Controllo pelle, Visita cute"
     },
     {
         cod: "EST010",
@@ -157,8 +148,7 @@ const dizionarioSanitario = [
         visitaIniziale: "No",
         visitaFinale: "Si",
         valutazioneSanitaria: "Referto radiologico",
-        sinonimi: "Tomografia computerizzata, SCAN",
-        descrizione: "Tomografia Assiale Computerizzata, esame radiologico dettagliato."
+        sinonimi: "Tomografia computerizzata, SCAN"
     }
 ];
 
@@ -211,13 +201,13 @@ function filterTerms() {
         filteredTerms = filteredTerms.filter(term => term.categoria === currentCategory);
     }
     
-    // Filtra per termine di ricerca
+    // Filtra per termine de ricerca
     if (currentSearchTerm) {
         filteredTerms = filteredTerms.filter(term => 
             term.termine.toLowerCase().includes(currentSearchTerm) ||
-            term.descrizione.toLowerCase().includes(currentSearchTerm) ||
             term.sinonimi.toLowerCase().includes(currentSearchTerm) ||
-            term.cod.toLowerCase().includes(currentSearchTerm)
+            term.cod.toLowerCase().includes(currentSearchTerm) ||
+            term.tipologia.toLowerCase().includes(currentSearchTerm)
         );
     }
     
@@ -259,7 +249,6 @@ function displayTerms(terms) {
             <p class="term-detail"><span class="detail-label">Visita Finale:</span> ${highlightText(term.visitaFinale, currentSearchTerm)}</p>
             <p class="term-detail"><span class="detail-label">Valutazione Sanitaria:</span> ${highlightText(term.valutazioneSanitaria, currentSearchTerm)}</p>
             <p class="term-detail"><span class="detail-label">Sinonimi:</span> ${highlightText(term.sinonimi, currentSearchTerm)}</p>
-            <p class="term-detail"><span class="detail-label">Descrizione:</span> ${highlightText(term.descrizione, currentSearchTerm)}</p>
         `;
         
         resultsContainer.appendChild(termCard);
