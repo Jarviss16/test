@@ -1089,10 +1089,11 @@ function updateStats(count) {
 function getCategoryLabel(category) {
     const labels = {
         'all': 'Tutti',
-        'visite': 'Visite',
-        'esami': 'Esami',
-        'interventi': 'Interventi',
-        'farmaci': 'Farmaci',
+        '6PADE': '6PADE',
+        '5PORT': '5PORT',
+        '4LENT': '4LENT',
+        '3MEDIC': '3MEDIC',
+        'TNON': 'TNON',
         'altre': 'Altre Prestazioni'
     };
     return labels[category] || category;
