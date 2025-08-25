@@ -3,7 +3,7 @@ const dizionarioSanitario = [
     {
         cod: "5PORT",
         tipologia: "Termine sanitario",
-        termine: "BASTONI CANADESI",
+        termine: "Bastoni canadesi",
         categoria: "Presidi ortopedici acquisto",
         rimborso: "20%",
         maxSpec: "300eur 3 anni ad avente diritto",
@@ -18,7 +18,7 @@ const dizionarioSanitario = [
     {
         cod: "5PORT",
         tipologia: "Termine sanitario",
-        termine: "BUSTO O CORSETTO ORTOPEDICO",
+        termine: "Busto o corsetto ortopedico",
         categoria: "Presidi ortopedici acquisto",
         rimborso: "20%",
         maxSpec: "300eur 3 anni ad avente diritto",
@@ -33,7 +33,7 @@ const dizionarioSanitario = [
     {
         cod: "5PORT",
         tipologia: "Termine sanitario",
-        termine: "CALZATURE ORTOPEDICHE",
+        termine: "Calzature ortopediche",
         categoria: "Presidi ortopedici acquisto",
         rimborso: "20%",
         maxSpec: "300eur 3 anni ad avente diritto",
