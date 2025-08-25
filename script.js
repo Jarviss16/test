@@ -349,5 +349,16 @@ function displayTerms(terms) {
 function updateStats(count) {
     termsCount.textContent = `${count} termini trovati`;
 }
+
+// Funzione per ottenere l'etichetta della categoria
+function getCategoryLabel(category) {
+    const labels = {
+        'all': 'Tutti',
+        'visite': 'Visite',
+        'esami': 'Esami',
+        'interventi': 'Interventi',
+        'farmaci': 'Farmaci',
+        'altre': 'Altre Prestazioni'
+    };
     return labels[category] || category;
 }
