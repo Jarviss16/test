@@ -2551,7 +2551,7 @@ function updateStats(count) {
 }
 
 // Imposta il link per il pulsante "Aggiungi termine" (da aggiornare in seguito)
-addTermButton.href = "#"; // Sostituire con il link corretto quando disponibile
+addTermButton.href = "https://forms.gle/sJSJB6KisLCbiVbV6"; // Sostituire con il link corretto quando disponibile
 
 // Aggiungi gestione click per il pulsante (opzionale)
 addTermButton.addEventListener('click', function(e) {
