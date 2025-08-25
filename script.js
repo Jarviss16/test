@@ -2466,13 +2466,11 @@ const dizionarioSanitario = [
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 const resultsContainer = document.getElementById('resultsContainer');
-const categoryButtons = document.querySelectorAll('.category-btn');
 const termsCount = document.getElementById('termsCount');
-const selectedCategory = document.getElementById('selectedCategory');
+const addTermButton = document.getElementById('addTermButton');
 
-// Variabili per filtri
+// Variabile per il termine di ricerca
 let currentSearchTerm = '';
-let currentCategory = 'all';
 
 // Inizializza la visualizzazione
 displayTerms(dizionarioSanitario);
@@ -2489,29 +2487,11 @@ searchButton.addEventListener('click', () => {
     filterTerms();
 });
 
-categoryButtons.forEach(button => {
-    button.addEventListener('click', function() {
-        // Rimuovi la classe active da tutti i pulsanti
-        categoryButtons.forEach(btn => btn.classList.remove('active'));
-        // Aggiungi la classe active al pulsante cliccato
-        this.classList.add('active');
-        
-        currentCategory = this.getAttribute('data-category');
-        selectedCategory.textContent = `Categoria: ${getCategoryLabel(currentCategory)}`;
-        filterTerms();
-    });
-});
-
-// Funzione per filtrare i termini in base alla ricerca e alla categoria
+// Funzione per filtrare i termini in base alla ricerca
 function filterTerms() {
     let filteredTerms = dizionarioSanitario;
     
-    // Filtra per categoria
-    if (currentCategory !== 'all') {
-        filteredTerms = filteredTerms.filter(term => term.categoria === currentCategory);
-    }
-    
-    // Filtra per termine de ricerca
+    // Filtra per termine di ricerca
     if (currentSearchTerm) {
         filteredTerms = filteredTerms.filter(term => 
             term.termine.toLowerCase().includes(currentSearchTerm) ||
@@ -2549,7 +2529,7 @@ function displayTerms(terms) {
             <h3 class="term-name">${highlightText(term.termine, currentSearchTerm)}</h3>
             <p class="term-detail"><span class="detail-label">COD:</span> ${highlightText(term.cod, currentSearchTerm)}</p>
             <p class="term-detail"><span class="detail-label">Tipologia:</span> ${highlightText(term.tipologia, currentSearchTerm)}</p>
-            <p class="term-detail"><span class="detail-label">Categoria:</span> ${getCategoryLabel(term.categoria)}</p>
+            <p class="term-detail"><span class="detail-label">Categoria:</span> ${term.categoria}</p>
             <p class="term-detail"><span class="detail-label">Rimborso:</span> ${highlightText(term.rimborso, currentSearchTerm)}</p>
             <p class="term-detail"><span class="detail-label">Max Spec:</span> ${highlightText(term.maxSpec, currentSearchTerm)}</p>
             <p class="term-detail"><span class="detail-label">Max Grup:</span> ${highlightText(term.maxGrup, currentSearchTerm)}</p>
@@ -2570,16 +2550,12 @@ function updateStats(count) {
     termsCount.textContent = `${count} termini trovati`;
 }
 
-// Funzione per ottenere l'etichetta della categoria
-function getCategoryLabel(category) {
-    const labels = {
-        'all': 'Tutti',
-        '6PADE': '6PADE',
-        '5PORT': '5PORT',
-        '4LENT': '4LENT',
-        '3MEDIC': '3MEDIC',
-        'TNON': 'TNON',
-        'altre': 'Altre Prestazioni'
-    };
-    return labels[category] || category;
-}
+// Imposta il link per il pulsante "Aggiungi termine" (da aggiornare in seguito)
+addTermButton.href = "#"; // Sostituire con il link corretto quando disponibile
+
+// Aggiungi gestione click per il pulsante (opzionale)
+addTermButton.addEventListener('click', function(e) {
+    // Qui puoi aggiungere eventuali azioni prima del reindirizzamento
+    console.log('Reindirizzamento alla pagina di aggiunta termine');
+    // Il reindirizzamento avverrà tramite l'href del link
+});
